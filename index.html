@@ -9,8 +9,26 @@
     <link rel="stylesheet" href="style.css">
     <!-- Iconos profesionales de FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Aplica el tema guardado antes de pintar la página (evita parpadeo) -->
+    <script>
+        (function () {
+            var tema = null;
+            try { tema = localStorage.getItem('tema'); } catch (e) {}
+            if (!tema) {
+                tema = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            }
+            document.documentElement.setAttribute('data-theme', tema);
+        })();
+    </script>
 </head>
 <body>
+
+<!-- Botones flotantes: tema (y más adelante, idioma) -->
+<div class="controls">
+    <button type="button" class="control-btn" id="btn-tema" aria-label="Cambiar a modo claro" title="Cambiar a modo claro">
+        <i class="fas fa-sun"></i><i class="fas fa-moon"></i>
+    </button>
+</div>
 
 <div class="container">
 
@@ -82,6 +100,58 @@
         </div>
 
         <div class="card">
+            <h2>Proyectos</h2>
+
+            <div class="experience-item project">
+                <div class="exp-header">
+                    <h3>Extractor de Reclamos con IA</h3>
+                    <a class="repo-link" href="https://github.com/Dargo502/extractor-reclamos" target="_blank"><svg class="ico" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> extractor-reclamos</a>
+                </div>
+                <p class="tech">Kotlin · API de Claude · Groq · JSON Schema · Gradle</p>
+                <ul>
+                    <li>Convierte correos de clientes que reclaman cobros de casetas en datos estructurados (unidad, placas, fechas y monto) mediante LLMs con salida estructurada.</li>
+                    <li>Reglas de negocio validadas en código, verificación de que cada dato tenga respaldo textual en el correo y evaluador con casos conocidos para medir la precisión por campo.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item project">
+                <div class="exp-header">
+                    <h3>Sistema de Gestión de Tickets (Help Desk)</h3>
+                    <a class="repo-link" href="https://github.com/Dargo502/sistema-tickets-java-umg" target="_blank"><svg class="ico" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> sistema-tickets-java-umg</a>
+                </div>
+                <p class="tech">Java 17 · Jakarta EE · Servlet/JSP · SOAP (JAX-WS) · SQL Server · Bootstrap 5</p>
+                <ul>
+                    <li>Mesa de ayuda con cola FIFO en arquitectura de 3 capas, desplegada en tres servidores independientes. Proyecto en equipo de 5 personas.</li>
+                    <li>Desarrollé la aplicación web: tablero Kanban con arrastrar y soltar, CRUD genérico para todas las tablas, diseño responsive y reportes formales en PDF y Excel.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item project">
+                <div class="exp-header">
+                    <h3>Sistema de Gestión Hotelera</h3>
+                    <a class="repo-link" href="https://github.com/Dargo502/ProyectoFinal_Progra1" target="_blank"><svg class="ico" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> ProyectoFinal_Progra1</a>
+                </div>
+                <p class="tech">C# · ASP.NET Core (.NET 10) · Entity Framework Core · SQL Server · Swagger</p>
+                <ul>
+                    <li>API REST documentada con Swagger y consumida por dos frontends (una SPA en JavaScript y una aplicación MVC con Razor), con inicio de sesión por roles y CRUD de hoteles, habitaciones, clientes, empleados y reservaciones. Proyecto en equipo de 5 personas.</li>
+                    <li>Me encargué de la base de datos en SQL Server y participé en el desarrollo de la API REST con Entity Framework Core.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item project">
+                <div class="exp-header">
+                    <h3>Rediseño del Sitio Web de DTC</h3>
+                    <a class="repo-link" href="https://github.com/Dargo502/DTC-Website" target="_blank"><svg class="ico" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> DTC-Website</a>
+                </div>
+                <p class="tech">HTML5 · CSS3 · JavaScript (ES6+)</p>
+                <ul>
+                    <li>Modernización del sitio de la Sociedad Alemana de Cirugía Global y Tropical, con contenido en alemán.</li>
+                    <li>Arquitectura CSS modular (ITCSS), diseño responsive con tipografía fluida y componentes reutilizables en JavaScript.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
             <h2>Habilidades Blandas</h2>
             <div class="skills-tags soft-skills">
                 <span>Liderazgo y Docencia</span>
@@ -97,7 +167,7 @@
         <div class="card">
             <h2>Certificaciones</h2>
             <div class="cert-grid">
-                <div class="cert-item" style="margin-top: 12px;">
+                <div class="cert-item">
                     <strong>CCNA 1, 2 y 3 (Routing and Switching)</strong>
                     <p>Edutek</p>
                 </div>
@@ -105,11 +175,11 @@
                     <strong>Cisco Certified Support Technician (CCST) IT</strong>
                     <p>Cisco Networking Academy</p>
                 </div>
-                <div class="cert-item" style="margin-top: 12px;">
+                <div class="cert-item">
                     <strong>Networking Basics & Linux Unhatched</strong>
                     <p>Cisco Networking Academy</p>
                 </div>
-                <div class="cert-item" style="margin-top: 12px;">
+                <div class="cert-item">
                     <strong>Administración de Servidores Windows</strong>
                     <p>Edutek</p>
                 </div>
@@ -215,6 +285,30 @@
     </main>
 
 </div>
+
+<script>
+    // Cambio de tema claro / oscuro
+    (function () {
+        var btn = document.getElementById('btn-tema');
+        var raiz = document.documentElement;
+
+        function actualizarBoton() {
+            var claro = raiz.getAttribute('data-theme') === 'light';
+            var texto = claro ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro';
+            btn.setAttribute('aria-label', texto);
+            btn.setAttribute('title', texto);
+        }
+
+        btn.addEventListener('click', function () {
+            var nuevo = raiz.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            raiz.setAttribute('data-theme', nuevo);
+            try { localStorage.setItem('tema', nuevo); } catch (e) {}
+            actualizarBoton();
+        });
+
+        actualizarBoton();
+    })();
+</script>
 
 </body>
 </html>
